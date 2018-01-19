@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		77B2C2B32011206000188B19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B2C2B22011206000188B19 /* AppDelegate.swift */; };
-		77B2C2B52011206000188B19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B2C2B42011206000188B19 /* ViewController.swift */; };
 		77B2C2B82011206000188B19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B2C2B62011206000188B19 /* Main.storyboard */; };
 		77B2C2BA2011206000188B19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77B2C2B92011206000188B19 /* Assets.xcassets */; };
 		77B2C2BD2011206000188B19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B2C2BB2011206000188B19 /* LaunchScreen.storyboard */; };
 		77B2C2C82011206000188B19 /* Hello_WorldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B2C2C72011206000188B19 /* Hello_WorldTests.swift */; };
 		77B2C2D32011206000188B19 /* Hello_WorldUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B2C2D22011206000188B19 /* Hello_WorldUITests.swift */; };
+		77B2C2E12011782D00188B19 /* HelloWorldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B2C2E02011782D00188B19 /* HelloWorldViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,6 @@
 /* Begin PBXFileReference section */
 		77B2C2AF2011206000188B19 /* Hello World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hello World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B2C2B22011206000188B19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		77B2C2B42011206000188B19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		77B2C2B72011206000188B19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77B2C2B92011206000188B19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77B2C2BC2011206000188B19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		77B2C2CE2011206000188B19 /* Hello WorldUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hello WorldUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B2C2D22011206000188B19 /* Hello_WorldUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hello_WorldUITests.swift; sourceTree = "<group>"; };
 		77B2C2D42011206000188B19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77B2C2E02011782D00188B19 /* HelloWorldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloWorldViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +98,11 @@
 			isa = PBXGroup;
 			children = (
 				77B2C2B22011206000188B19 /* AppDelegate.swift */,
-				77B2C2B42011206000188B19 /* ViewController.swift */,
 				77B2C2B62011206000188B19 /* Main.storyboard */,
 				77B2C2B92011206000188B19 /* Assets.xcassets */,
 				77B2C2BB2011206000188B19 /* LaunchScreen.storyboard */,
 				77B2C2BE2011206000188B19 /* Info.plist */,
+				77B2C2E02011782D00188B19 /* HelloWorldViewController.swift */,
 			);
 			path = "Hello World";
 			sourceTree = "<group>";
@@ -259,7 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77B2C2B52011206000188B19 /* ViewController.swift in Sources */,
+				77B2C2E12011782D00188B19 /* HelloWorldViewController.swift in Sources */,
 				77B2C2B32011206000188B19 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
