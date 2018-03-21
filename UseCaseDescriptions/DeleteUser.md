@@ -1,8 +1,10 @@
 | Title | Description |
 |-------|:------------|
 | Name | Delete User|
-| ID |  |
+| Scenario | A user is deleted from the database system. |
 | Actors | Manager |
+| Related User Cases |  |
+| Stakeholders | User, Manager, Admin |
 | Organizational Benefit | Managers will be able to empty the list of users when a user is either not needed or has left, keeping the database up to date regarding changes in their workforce |
 | Frequency of Use | As the workforce evolves, so must the database. Near constant use assuming large enough number of users. |
 | Triggers | A manager selects a user from the database to be removed |
