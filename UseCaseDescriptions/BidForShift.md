@@ -2,7 +2,7 @@
 |-------|:------------|
 | Name | Bid For Shifts |
 | Scenario | Users will be assigned points to use toward bidding for a shift. Bidding on a shift will automatically assign the shift to the bidder. |
-| Actors | Employees |
+| Actors | User |
 | Related Use Cases | Login |
 | Stakeholders | User, Manager |
 | Organizational Benefit | The value provided by the bidding system for the organization stems from the savings in overhead for managers to schedule their part-time employees. It also increases employee moral when employees can feel in control of their work schedules. |
