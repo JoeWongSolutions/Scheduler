@@ -1,10 +1,12 @@
 | Title | Description |
 |-------|:------------|
 | Name | Delete Manager|
-| ID |  |
+| Scenario | Delete a Manager from the database system. |
 | Actors | Admin |
+| Related Use Cases | Delete Shift, Alter Shift |
+| Stakeholders | User, Manager, Admin |
 | Organizational Benefit | Much as an employee of a manager may be changed, so will the managers of organizations as time progresses. This is a natural process of the workforce |
-| Frequency of Use | As the workforce evolves, so must the database. Not as constant as normal user deletion, but high use assuming large user base. |
+| Frequency of Use | Moderate - As the workforce evolves, so must the database. Not as constant as normal user deletion, but high use assuming large user base. |
 | Triggers | The admin selects a user from the database to be removed |
 | Preconditions | The admin must be viewing the managers table and the manager to be removed from the database must exist within the database |
 | Post-conditions | The admin has visual confirmation that the manager has been deleted from the database. Any searching through the database will show no indication that the manager currently exists within the database. |
