@@ -3,7 +3,7 @@
 | Name | Change Password|
 | Scenario | Modify the user's password |
 | Actors | User, Manager, Admin |
-| Related use cases| Create User, Create Manager |
+| Related Use Cases | Create User, Create Manager |
 | Stakeholders | User, Manager, Admin|
 | Organizational Benefit | For the sake of security, all users should be allowed to change their passwords, either in case their password have been compromised or if they feel they aren't secure enough. |
 | Frequency of Use | Low - the risk of either of the above cases listed in the organizational benefits should be rare. |
