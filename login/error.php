@@ -12,7 +12,7 @@
 	</style>
 </head>
 <body>
-	<h1 class="error">Error</h1>
+	<h1>Error</h1>
 	<p>There was an error starting a session.</p>
     <p>Please contact the system administrator.</p>
 </body>
