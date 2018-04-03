@@ -30,6 +30,7 @@ CREATE TABLE managers(
 	managerID int,
 	orgID int NOT NULL,
 	CreationDate date,
+    userName varchar(128) NOT NULL,
 	pass char(128) NOT NULL,	#SHA-512
     PRIMARY KEY (managerID),
     FOREIGN KEY (orgID) REFERENCES organizations (orgID)
