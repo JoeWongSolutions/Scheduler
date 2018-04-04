@@ -7,9 +7,8 @@
 
     <?php 
         require_once("bscdn.html"); 
-        require_once("main.js");
     ?>
-    
+    <script src="main.js"></script>
     
     <title>ABCScheduler</title>
     </head>
