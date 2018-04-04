@@ -5,42 +5,42 @@ CREATE TABLE shifts (
     endTime datetime,
     active boolean,
     maxBid int,
-    positionOpen varchar(140)
+    staffPosition varchar(128)
 );
 DROP TABLE IF EXISTS organizations;
 create table organizations(
-	name varchar(140),
+	name varchar(128),
     orgID int,
-    locationCity varchar(140),
+    locationCity varchar(128),
     locationState char(2),
     storeNumber int,
     PRIMARY KEY (orgID, storeNumber)
 );
 DROP TABLE IF EXISTS users;
 create table users(
-	name varchar(140) NOT NULL,
-    userID int PRIMARY KEY,
+	name varchar(128) NOT NULL,
+    userID varchar(128) PRIMARY KEY,
     ssn char(9) NOT NULL,
     birthday date,
-    address varchar(140),
-    phone varchar(20)
+    address varchar(128),
+    phone varchar(20),
+    email varchar(128)
 );
 DROP TABLE IF EXISTS managers;
 CREATE TABLE managers(
-	managerID int,
+	managerID varchar(128),
 	orgID int NOT NULL,
 	CreationDate date,
-    userName varchar(128) NOT NULL,
 	pass char(128) NOT NULL,	#SHA-512
     PRIMARY KEY (managerID),
     FOREIGN KEY (orgID) REFERENCES organizations (orgID)
 );
 DROP TABLE IF EXISTS employed;
 CREATE TABLE employed(
-	userID int,
+	userName varchar(128),
     managerID int,
     active boolean NOT NULL,
-    staffPosition varchar(140),
+    staffPosition varchar(128),
     PRIMARY KEY (userID, managerID),
     FOREIGN KEY (userID) REFERENCES users (userID),
     FOREIGN KEY (managerID) REFERENCES managers (managerID)
@@ -53,7 +53,7 @@ CREATE TABLE shiftsArchive (
     endTime datetime,
     active boolean,
     maxBid int,
-    positionOpen varchar(140)
+    positionOpen varchar(128)
 );
 DROP TABLE IF EXISTS managersArchive;
 CREATE TABLE managersArchive(
@@ -67,22 +67,22 @@ CREATE TABLE employedArchive(
 	userId int NOT NULL,
     managerID int NOT NULL,
     current boolean NOT NULL,
-    staffPosition varchar(140)
+    staffPosition varchar(128)
 );
 DROP TABLE IF EXISTS usersArchive;
 create table usersArchive(
-	name varchar(140),
+	name varchar(128),
     userID int NOT NULL,
     ssn char(9) NOT NULL,
     birthday date,
-    address varchar(140),
+    address varchar(128),
     phone varchar(20)
 );
 DROP TABLE IF EXISTS organizationsArchive;
 create table organizationsArchive(
-	name varchar(140),
+	name varchar(128),
     orgID int NOT NULL,
-    locationCity varchar(140),
+    locationCity varchar(128),
     locationState char(2),
     storeNumber int NOT NULL
 );
