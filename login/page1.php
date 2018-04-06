@@ -19,9 +19,14 @@
     <div>
         <h1>Page 1</h1>
         <div>
-            <p>This is a page containing protected content.</p>
-            <p>You must be logged in to view this page.</p>
+            <p>This is a content managers and users can see.</p>
+            <?php 
+                if(strcmp($_SESSION['accessLevel'], 'managers') == 0){
+                    echo '<p>This is Protected content only managers can see';
+                }  
+            ?>
         </div>
+        <p><a href='logout.php'>Logout</a></p>
     </div>
 </body>
 </html>

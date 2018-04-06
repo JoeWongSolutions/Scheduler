@@ -38,8 +38,7 @@
         
         $loginPassword = sha1($loginPassword); 
         
-//		$query = "SELECT id FROM '$accessLevel' WHERE userName = '$loginUsername' AND password = '$loginPassword'";
-         $query = "SELECT * FROM users WHERE name = '$loginUsername' AND pass = '$loginPassword'";
+        $query = "SELECT * FROM $accessLevel WHERE name = '$loginUsername' AND pass = '$loginPassword'";
 		
 		$mysqliResult = $mysqli->query($query);
         
@@ -51,7 +50,7 @@
   		    if ($match == 1) {
                 $_SESSION['loggedin'] = $loginUsername;
              
-//                $_SESSION['accessLevel'] = $accessLevel
+                $_SESSION['accessLevel'] = $accessLevel;
                 header("Location: page1.php");
                 exit;
             }
@@ -62,6 +61,7 @@
             }
         } else {
           $error = 'Login Error: Please contact the system administrator.';
+            echo $query;
           require "loginForm.php";
           exit;
         }
