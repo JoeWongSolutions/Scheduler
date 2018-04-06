@@ -1,12 +1,9 @@
-<?php
-require_once("bscdn.html");
-?>
-<ul class="nav nav-tabs justify-content-end" role="tablist">
+<ul class="nav nav-tabs justify-content-end">
   <li class="nav-item">
-    <a class="nav-link active" id="schedule-tab" data-toggle="tab" href="#" role="tab" aria-controls="schedule" aria-selected="true">Schedule</a>
+    <a class="nav-link" id="schedule-tab" href="schedule.php" aria-selected="false">Schedule</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="bid-tab" data-toggle="tab" href="#" role="tab" aria-controls="bid" aria-selected="false">Bid</a>
+    <a class="nav-link" id="employees-tab" href="employees.php" aria-selected="false">Employees</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
