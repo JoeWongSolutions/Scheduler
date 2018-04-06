@@ -18,24 +18,59 @@
 	else
 		login_form();
 	
-	function handle_login() {
-		$username = empty($_POST['username']) ? '' : $_POST['username'];
-		$password = empty($_POST['password']) ? '' : $_POST['password'];
-	
-		if ($username == "test" && $password == "pass") {
-			$_SESSION['loggedin'] = $username;
-			header("Location: page1.php");
-			exit;
-		} else {
-			$error = 'Error: Incorrect username or password';
+    function handle_login() {
+		$loginUsername = empty($_POST['loginUsername']) ? '' : $_POST['loginUsername'];
+		$loginPassword = empty($_POST['loginPassword']) ? '' : $_POST['loginPassword'];
+		$accessLevel = empty($_POST['accessLevel']) ? '' : $_POST['accessLevel'];
+        
+        require_once 'db.conf';
+        
+        $mysqli = new mysqli($hostname, $username, $password, $dbname);
+
+        if ($mysqli->connect_error) {
+            $error = 'Error: ' . $mysqli->connect_errno . ' ' . $mysqli->connect_error;
 			require "login_form.php";
-		}		
+            exit;
+        }
+        
+        $loginUsername = $mysqli->real_escape_string($loginUsername);
+        $loginPassword = $mysqli->real_escape_string($loginPassword);
+        
+        $loginPassword = sha1($loginPassword); 
+        
+//		$query = "SELECT id FROM '$accessLevel' WHERE userName = '$loginUsername' AND password = '$loginPassword'";
+         $query = "SELECT * FROM users WHERE name = '$loginUsername' AND pass = '$loginPassword'";
+		
+		$mysqliResult = $mysqli->query($query);
+        
+        if ($mysqliResult) {
+            $match = $mysqliResult->num_rows;
+            $mysqliResult->close();
+            $mysqli->close();
+
+  		    if ($match == 1) {
+                $_SESSION['loggedin'] = $loginUsername;
+             
+//                $_SESSION['accessLevel'] = $accessLevel
+                header("Location: page1.php");
+                exit;
+            }
+            else {
+                $error = 'Error: Incorrect username or password';
+                require "loginForm.php";
+                exit;
+            }
+        } else {
+          $error = 'Login Error: Please contact the system administrator.';
+          require "loginForm.php";
+          exit;
+        }
 	}
-	
-	function login_form() {
+
+
+    function login_form() {
 		$username = "";
 		$error = "";
-		require "login_form.php";
+		require "loginForm.php";
 	}
-	
 ?>

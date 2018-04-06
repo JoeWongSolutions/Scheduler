@@ -16,15 +16,20 @@
             <input type="hidden" name="action" value="do_login">
             
             <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" autofocus value="<?php print $username; ?>">
+                <label for="loginUsername">Username:</label>
+                <input type="text" id="loginUsername" name="loginUsername" autofocus value="<?php print $loginUsername; ?>">
             </div>
             
             <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" name="loginPassword">
             </div>
-            
+            <div class="radio">
+                <label><input type="radio" name="accessLevel" value="managers">Manager</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="accessLevel" value="users" checked>User</label>
+            </div>
             <input type="submit">
         </form>
     </div>
