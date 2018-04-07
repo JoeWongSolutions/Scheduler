@@ -26,7 +26,7 @@ if ($mysqli->connect_error) {
     exit;
 }
 
-if (!($stmt = $mysqli->prepare("SELECT staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid FROM shifts WHERE managerID = (?) AND DATE(startTime) = (?) AND (staffPosition = (?) OR staffPosition = 'any') ORDER BY startTime"))) {
+if (!($stmt = $mysqli->prepare("SELECT staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids FROM shifts WHERE managerID = (?) AND DATE(startTime) = (?) AND (staffPosition = (?) OR staffPosition = 'any') ORDER BY startTime"))) {
     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
 }
 
@@ -34,10 +34,10 @@ if (!($stmt = $mysqli->prepare("SELECT staffPosition, TIME(startTime) AS startTi
 echo '<div class="row mx-0 px-0">';
 foreach($weekdays as $weekday){
     echo '<div id="'.$weekday.'" class="col-lg mx-0 px-1">
-            <div class="card">
+            <div class="card bg-dark">
                 <div class="card-body">
-                    <h5 class="text-center">'.$weekday.'</h5>
-                    <p class="text-center">'.$week_start->format('M-d-Y').'</p>
+                    <h5 class="text-center text-light">'.$weekday.'</h5>
+                    <p class="text-center text-light">'.$week_start->format('M-d-Y').'</p>
                 </div>
             </div>';
                 $week_start_string = $week_start->format('Y-m-d');
@@ -50,13 +50,16 @@ foreach($weekdays as $weekday){
                 if (!($res = $stmt->get_result())) {
                     echo "Getting result set failed: (" . $stmt->errno . ") " . $stmt->error;
                 }
-                while ($row = $res->fetch_assoc()) { 
-                    echo '<div class="card">
-                            <div class="card-body btn" data-toggle="modal" data-target="#editShiftModal" data-shiftID="'.$row["staffPosition"].'" data-startTime="'.$row["startTime"].'" data-endTime="'.$row["endTime"].'" data-maxBid="'.$row["maxBid"].'" data-active="'.$row["active"].'">
-                                <h6>'.$row["staffPosition"].'</h6>
-                                <small>'.$row["startTime"].' - '.$row["endTime"].'</small>
-                            </div>
-                        </div>';    
+                while ($row = $res->fetch_assoc()) {
+                    $remaining = $row["maxBid"] - $row["bids"];
+                    $html = '<div class="card">
+                                <div class="card-body btn" data-toggle="modal" data-target="#editShiftModal" data-shiftID="'.$row["staffPosition"].'" data-startTime="'.$row["startTime"].'" data-endTime="'.$row["endTime"].'" data-maxBid="'.$row["maxBid"].'" data-active="'.$row["active"].'">
+                                    <h6>'.$row["staffPosition"].'</h6>
+                                    <small>'.$row["startTime"].' - '.$row["endTime"].'</small><br>
+                                    <small>remaining: '.$remaining.'</small>
+                                </div>
+                            </div>';
+                    echo $html;
                 }
                 $res->free();
                 $week_start->add(new DateInterval('P1D'));

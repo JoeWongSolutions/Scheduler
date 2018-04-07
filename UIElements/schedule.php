@@ -15,6 +15,7 @@
             include("templates/nav_manager.php");
             include("templates/schedule.template");
             include("templates/editShiftModal.template");
+            include("templates/addShiftModal.template");
         ?>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

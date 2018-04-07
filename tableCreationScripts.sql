@@ -34,6 +34,7 @@ CREATE TABLE shifts (
     endTime datetime,
     active boolean,
     maxBid int,
+    bids int,
     staffPosition varchar(128),
     FOREIGN KEY (managerID) REFERENCES managers (managerID)
 );
@@ -100,6 +101,6 @@ INSERT INTO managers VALUES
 INSERT INTO employed VALUES
 (1,1,true,'any');
 INSERT INTO shifts VALUES
-('1','2018-04-02 11:30:00','2018-04-02 12:30:00',true,3,'cashier'),
-('1','2018-04-02 13:30:00','2018-04-02 14:30:00',true,3,'cashier'),
-('1','2018-04-04 11:30:00','2018-04-03 12:30:00',true,3,'cashier');
+('1','2018-04-02 11:30:00','2018-04-02 12:30:00',true,3,0,'cashier'),
+('1','2018-04-02 13:30:00','2018-04-02 14:30:00',true,3,0,'cashier'),
+('1','2018-04-04 11:30:00','2018-04-03 12:30:00',true,3,0,'cashier');
