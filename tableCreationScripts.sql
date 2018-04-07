@@ -94,9 +94,9 @@ INSERT INTO organizations VALUES
 ('testOrganization',1,'Columbia','MO',1),
 ('testOrganization2',2,'Columbia','MO',2);
 INSERT INTO users VALUES
-('testUser',1,'pass','111223344','2000-01-01','SomeAddress','999-888-7777','test@user.com');
+('testUser',1,'9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684','111223344','2000-01-01','SomeAddress','999-888-7777','test@user.com');
 INSERT INTO managers VALUES
-(1,1,NOW(),'pass');
+(1,1,NOW(),'9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684');
 INSERT INTO employed VALUES
 (1,1,true,'any');
 INSERT INTO shifts VALUES
