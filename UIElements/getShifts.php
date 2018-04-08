@@ -1,7 +1,29 @@
 <?php
-//This will need to be changed, its hardcoded
-$managerID = 1;
-$staffPosition = "cashier";
+if(!session_start()) {
+    header("Location: error.php");
+    exit;
+}
+
+//Test Code
+//$_SESSION['loggedin'] = "1";
+//$_SESSION['accessLevel'] = "users";
+//$_SESSION['managerID'] = '1';
+
+if(!empty($_SESSION['loggedin'])){
+    if($_SESSION["accessLevel"] == "managers"){
+        $managerID = empty($_SESSION['loggedin']) ? false : $_SESSION['loggedin'];
+    } else {
+        $managerID = empty($_SESSION['managerID']) ? false : $_SESSION['managerID'];
+        if(!$managerID){
+            echo "The managerID was not set, managerID is not a valid session index";
+            exit;
+        }
+    }
+} else {
+    header("location: loginForm.php");
+    echo "Error you are not logged in";
+    exit;
+}
 
 //Array holding days of the week
 $weekdays = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
@@ -12,6 +34,11 @@ if($weekParts){
     $year = (int)$weekParts[0];
     $week_no = $weekParts[1];
     $week_start = new DateTime();
+
+    //Test code
+//    $year = 2018;
+//    $week_no = 15;
+    
     $week_start->setISODate($year,$week_no);
 } else {
     echo "No week was selected";
@@ -26,7 +53,18 @@ if ($mysqli->connect_error) {
     exit;
 }
 
-if (!($stmt = $mysqli->prepare("SELECT staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids FROM shifts WHERE managerID = (?) AND DATE(startTime) = (?) AND (staffPosition = (?) OR staffPosition = 'any') ORDER BY startTime"))) {
+//Separate data for Managers and Users
+if($_SESSION["accessLevel"] == "managers"){
+    $sql = "SELECT staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids FROM shifts WHERE managerID = (?) AND DATE(startTime) = (?) ORDER BY startTime";
+    $modal = "#editShiftModal";
+} else {
+    //Hardcoded cashier, still need to implement this dynamically
+    $staffPosition = "cashier";
+    $sql = "SELECT shiftID, staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids FROM shifts WHERE managerID = (?) AND DATE(startTime) = (?) AND (staffPosition = (?) OR staffPosition = 'any') ORDER BY startTime";
+    $modal = "#bidShiftModal";
+}
+
+if (!($stmt = $mysqli->prepare($sql))) {
     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
 }
 
@@ -41,8 +79,14 @@ foreach($weekdays as $weekday){
                 </div>
             </div>';
                 $week_start_string = $week_start->format('Y-m-d');
-                if (!$stmt->bind_param("iss", $managerID, $week_start_string, $staffPosition)) {
-                    echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+                if($_SESSION['accessLevel'] == "managers"){
+                    if (!$stmt->bind_param("is", $managerID, $week_start_string)) {
+                        echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+                    }
+                } else {
+                    if (!$stmt->bind_param("iss", $managerID, $week_start_string, $staffPosition)) {
+                        echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+                    }
                 }
                 if (!$stmt->execute()) {
                     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
@@ -53,7 +97,7 @@ foreach($weekdays as $weekday){
                 while ($row = $res->fetch_assoc()) {
                     $remaining = $row["maxBid"] - $row["bids"];
                     $html = '<div class="card">
-                                <div class="card-body btn" data-toggle="modal" data-target="#editShiftModal" data-shiftID="'.$row["staffPosition"].'" data-startTime="'.$row["startTime"].'" data-endTime="'.$row["endTime"].'" data-maxBid="'.$row["maxBid"].'" data-active="'.$row["active"].'">
+                                <div class="card-body btn" data-toggle="modal" data-target="'.$modal.'" data-shiftID="'.$row["shiftID"].'" data-staffPosition="'.$row["staffPosition"].'" data-startTime="'.$row["startTime"].'" data-endTime="'.$row["endTime"].'" data-maxBid="'.$row["maxBid"].'" data-active="'.$row["active"].'">
                                     <h6>'.$row["staffPosition"].'</h6>
                                     <small>'.$row["startTime"].' - '.$row["endTime"].'</small><br>
                                     <small>remaining: '.$remaining.'</small>
@@ -61,8 +105,9 @@ foreach($weekdays as $weekday){
                             </div>';
                     echo $html;
                 }
-                $res->free();
                 $week_start->add(new DateInterval('P1D'));
         echo '</div>';
 }
+$res->free();
+$mysqli->close();
 ?>
