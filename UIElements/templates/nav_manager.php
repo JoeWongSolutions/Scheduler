@@ -12,6 +12,6 @@
     <a class="nav-link" id="settings-tab" data-toggle="tab" href="#" role="tab" aria-controls="settings" aria-selected="false">Settings</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Sign Out</a>
+    <a class="nav-link" href="logout.php">Sign Out</a>
   </li>
 </ul>

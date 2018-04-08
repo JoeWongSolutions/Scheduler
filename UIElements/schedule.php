@@ -1,4 +1,26 @@
 <!DOCTYPE html>
+<?php
+if(!session_start()) {
+    header("Location: error.php");
+    exit;
+}
+
+//Test Code
+//$_SESSION['loggedin'] = "1";
+//$_SESSION['accessLevel'] = "managers";
+
+if(!empty($_SESSION['loggedin'])){
+    if($_SESSION["accessLevel"] == "managers"){
+        $managerID = empty($_SESSION['loggedin']) ? false : $_SESSION['loggedin'];
+    } elseif($_SESSION["accessLevel"] == "users"){
+        $managerID = empty($_SESSION['managerID']) ? false : $_SESSION['managerID'];
+    }
+} else {
+    header("location: loginForm.php");
+    echo "Error you are not logged in";
+    exit;
+}
+?>
 <html lang="en">
     <head>
     <!-- Required meta tags -->
@@ -11,10 +33,17 @@
     <title>ABCScheduler</title>
     </head>
     <body>
-        <?php 
-            include("templates/nav_manager.php");
-            include("templates/schedule.template");
-            include("templates/editShiftModal.template");
+        <?php
+            if($_SESSION["accessLevel"] == "managers"){
+                include("templates/nav_manager.php");
+                include("templates/schedule.template");
+                include("templates/editShiftModal.template");
+                include("templates/addShiftModal.template");
+            } else {
+                include("templates/nav_default.php");
+                include("templates/user_schedule.template");
+                include("templates/bidShiftModal.template");
+            }
         ?>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -26,7 +26,7 @@
                         <div class="container-fluid">
                             <form action="#" method="post">
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label">Position Name</label>
+                                    <label class="col-lg-2 col-form-label" for="posName">Position Name</label>
                                     <div class="col-lg-10">
                                         <input type="text" class="form-control" id="posName" required>
                                     </div>
@@ -50,6 +50,7 @@
                                     </div>
                                 </div>
                                 <div class="form-check text-right">
+                                    <input type="hidden" id="shiftID" name="shiftID" value="">
                                     <input type="checkbox" class="form-check-input" checked data-toggle="toggle" id="active" value="active">
                                     <label class="form-check-label" for="active">Active</label>
                                 </div>

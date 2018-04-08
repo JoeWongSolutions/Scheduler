@@ -29,11 +29,13 @@ CREATE TABLE managers(
 );
 DROP TABLE IF EXISTS shifts;
 CREATE TABLE shifts (
+    shiftID bigint PRIMARY KEY AUTO_INCREMENT,
 	managerID varchar(128) NOT NULL,
     startTime datetime,
     endTime datetime,
     active boolean,
     maxBid int,
+    bids int,
     staffPosition varchar(128),
     FOREIGN KEY (managerID) REFERENCES managers (managerID)
 );
@@ -50,7 +52,6 @@ CREATE TABLE employed(
 DROP TABLE IF EXISTS shiftsArchive;
 CREATE TABLE shiftsArchive (
 	managerID varchar(128) NOT NULL,
-    calenderDate date,
     startTime datetime,
     endTime datetime,
     active boolean,
@@ -94,12 +95,16 @@ INSERT INTO organizations VALUES
 ('testOrganization',1,'Columbia','MO',1),
 ('testOrganization2',2,'Columbia','MO',2);
 INSERT INTO users VALUES
-('testUser',1,'pass','111223344','2000-01-01','SomeAddress','999-888-7777','test@user.com');
+('testUser',1,'9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684','111223344','2000-01-01','SomeAddress','999-888-7777','test@user.com');
 INSERT INTO managers VALUES
-(1,1,NOW(),'pass');
+(1,1,NOW(),'9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684');
 INSERT INTO employed VALUES
 (1,1,true,'any');
-INSERT INTO shifts VALUES
-('1','2018-04-02 11:30:00','2018-04-02 12:30:00',true,3,'cashier'),
-('1','2018-04-02 13:30:00','2018-04-02 14:30:00',true,3,'cashier'),
-('1','2018-04-04 11:30:00','2018-04-03 12:30:00',true,3,'cashier');
+INSERT INTO shifts (managerID, startTime, endTime, active, maxBid, bids, staffPosition) VALUES
+('1','2018-04-09 11:30:00','2018-04-09 12:30:00',true,3,0,'any'),
+('1','2018-04-11 13:30:00','2018-04-11 14:30:00',true,3,0,'any'),
+('1','2018-04-11 11:30:00','2018-04-11 12:30:00',true,3,0,'any');
+
+
+#Test Queries
+SELECT staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids FROM shifts WHERE managerID = 1 AND DATE(startTime) = '2018-04-09' AND (staffPosition = 'cashier' OR staffPosition = 'any') AND bids < maxBids ORDER BY startTime;
