@@ -55,7 +55,7 @@ if ($mysqli->connect_error) {
 
 //Separate data for Managers and Users
 if($_SESSION["accessLevel"] == "managers"){
-    $sql = "SELECT staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids FROM shifts WHERE managerID = (?) AND DATE(startTime) = (?) ORDER BY startTime";
+    $sql = "SELECT shiftID, staffPosition, DATE(startTime) AS date, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids FROM shifts WHERE managerID = (?) AND DATE(startTime) = (?) ORDER BY startTime";
     $modal = "#editShiftModal";
 } else {
     //Hardcoded cashier, still need to implement this dynamically
@@ -97,7 +97,7 @@ foreach($weekdays as $weekday){
                 while ($row = $res->fetch_assoc()) {
                     $remaining = $row["maxBid"] - $row["bids"];
                     $html = '<div class="card">
-                                <div class="card-body btn" data-toggle="modal" data-target="'.$modal.'" data-shiftID="'.$row["shiftID"].'" data-staffPosition="'.$row["staffPosition"].'" data-startTime="'.$row["startTime"].'" data-endTime="'.$row["endTime"].'" data-maxBid="'.$row["maxBid"].'" data-active="'.$row["active"].'">
+                                <div class="card-body btn" data-toggle="modal" data-target="'.$modal.'" data-shiftID="'.$row["shiftID"].'" data-shiftDate="'.$row["date"].'"  data-staffPosition="'.$row["staffPosition"].'" data-startTime="'.$row["startTime"].'" data-endTime="'.$row["endTime"].'" data-maxBid="'.$row["maxBid"].'" data-active="'.$row["active"].'">
                                     <h6>'.$row["staffPosition"].'</h6>
                                     <small>'.$row["startTime"].' - '.$row["endTime"].'</small><br>
                                     <small>remaining: '.$remaining.'</small>

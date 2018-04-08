@@ -17,7 +17,7 @@ if(!empty($_SESSION['loggedin'])){
     exit;
 }
 
-function test_input($data) {
+function testInput($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
@@ -25,21 +25,29 @@ function test_input($data) {
 }
 
 //Store variables
-if(!($startTime = empty($_POST['startTime']) ? false : $_POST['startTime'])){
+if(!($shiftID = empty($_POST['shiftID']) ? false : testInput($_POST['shiftID']))){
+    echo "The shiftID is not present";
+    exit;
+}
+if(!($shiftDate = empty($_POST['shiftDate']) ? false : testInput($_POST['shiftDate']))){
+    echo "The shift date is not present";
+    exit;
+}
+if(!($startTime = empty($_POST['startTime']) ? false : testInput($_POST['startTime']))){
     echo "Start time needs to be filled out";
     exit;
 }
-if(!($endTime = empty($_POST['endTime']) ? false : $_POST['endTime'])){
+if(!($endTime = empty($_POST['endTime']) ? false : testInput($_POST['endTime']))){
     echo "End time needs to be filled out";
     exit;
 }
 //Can't check active because it has a false option
-$active = empty($_POST['active']) ? false : $_POST['active'];
-if(!($maxBid = empty($_POST['maxBid']) ? false : $_POST['maxBid'])){
+$active = empty($_POST['active']) ? false : testInput($_POST['active']);
+if(!($maxBid = empty($_POST['maxBid']) ? false : testInput($_POST['maxBid']))){
     echo "Max bids needs to be filled out";
     exit;
 }
-if(!($staffPosition = empty($_POST['staffPosition']) ? false : $_POST['posName'])){
+if(!($staffPosition = empty($_POST['staffPosition']) ? false : testInput($_POST['staffPosition']))){
     echo "Staff position needs to be filled out";
     exit;
 }
@@ -51,13 +59,18 @@ if ($mysqli->connect_error) {
     echo('Error: ' . $mysqli->connect_errno . ' ' . $mysqli->connect_error);
     exit;
 }
-$sql = "INSERT INTO shifts (managerID, startTime, endTime, active, maxBid, bids, staffPosition) VALUES
-((?),(?),(?),(?),(?),0,(?))";
+$sql = "UPDATE shifts SET startTime=(?), endTime=(?), active=(?), maxBid=(?), staffPosition=(?)
+WHERE shiftID=(?)";
 if (!($stmt = $mysqli->prepare($sql))) {
     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
     exit;
 }
-if (!$stmt->bind_param("ssssis", $managerID, $startTime, $endTime, $active, $maxBid, $staffPosition)) {
+
+//A bit weird but we need to append the date to the time in order for mysql to query correctly
+$startTime = $shiftDate . " " . $startTime;
+$endTime = $shiftDate . " " . $endTime;
+
+if (!$stmt->bind_param("sssiss", $startTime, $endTime, $active, $maxBid, $staffPosition, $shiftID)) {
     echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
     exit;
 }

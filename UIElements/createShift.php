@@ -17,7 +17,7 @@ if(!empty($_SESSION['loggedin'])){
     exit;
 }
 
-function test_input($data) {
+function testInput($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
@@ -25,21 +25,21 @@ function test_input($data) {
 }
 
 //Store variables
-if(!($startTime = empty($_POST['startTime']) ? false : $_POST['startTime'])){
+if(!($startTime = empty($_POST['startTime']) ? false : testInput($_POST['startTime']))){
     echo "Start time needs to be filled out";
     exit;
 }
-if(!($endTime = empty($_POST['endTime']) ? false : $_POST['endTime'])){
+if(!($endTime = empty($_POST['endTime']) ? false : testInput($_POST['endTime']))){
     echo "End time needs to be filled out";
     exit;
 }
 //Can't check active because it has a false option
-$active = empty($_POST['active']) ? false : $_POST['active'];
-if(!($maxBid = empty($_POST['maxBid']) ? false : $_POST['maxBid'])){
+$active = empty($_POST['active']) ? false : testInput($_POST['active']);
+if(!($maxBid = empty($_POST['maxBid']) ? false : testInput($_POST['maxBid']))){
     echo "Max bids needs to be filled out";
     exit;
 }
-if(!($staffPosition = empty($_POST['staffPosition']) ? false : $_POST['posName'])){
+if(!($staffPosition = empty($_POST['staffPosition']) ? false : testInput($_POST['staffPosition']))){
     echo "Staff position needs to be filled out";
     exit;
 }
