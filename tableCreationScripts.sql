@@ -107,4 +107,4 @@ INSERT INTO shifts (managerID, startTime, endTime, active, maxBid, bids, staffPo
 
 
 #Test Queries
-SELECT staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids FROM shifts WHERE managerID = 1 AND DATE(startTime) = '2018-04-09' AND (staffPosition = 'cashier' OR staffPosition = 'any') ORDER BY startTime;
+SELECT staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids FROM shifts WHERE managerID = 1 AND DATE(startTime) = '2018-04-09' AND (staffPosition = 'cashier' OR staffPosition = 'any') AND bids < maxBids ORDER BY startTime;

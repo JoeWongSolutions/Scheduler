@@ -37,13 +37,6 @@ $('#editShiftModal').on('show.bs.modal', function (event) {
     modal.find('#active').val(active)
 })
 
-$('#delete').click(function (event) {
-    $('#staffPosition').val("");
-    $('#startTime').val("");
-    $('#endTime').val("");
-    $('#maxBid').val("");
-})
-
 $(function() {
     //Change the appearance of the nav bar to indicate current tab
     $('#schedule-tab').toggleClass("active")
@@ -62,5 +55,18 @@ $(function() {
     //Populate the Calendar with the selected week's shifts
     refreshShifts(curWeek);
     
-
+    //Event Handlers
+    $('#clear').click(function (event) {
+        event.preventDefault();
+        $('#addShiftModal #staffPosition').val("");
+        $('#addShiftModal #startTime').val("");
+        $('#addShiftModal #endTime').val("");
+        $('#addShiftModal #maxBid').val("");
+    })
+    
+    $('#delete').click(function(event){
+        if(!confirm("Are you sure you want to DELETE this shift?")){
+            event.preventDefault();
+        }
+    })
 })

@@ -58,9 +58,8 @@ if($_SESSION["accessLevel"] == "managers"){
     $sql = "SELECT shiftID, staffPosition, DATE(startTime) AS date, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids FROM shifts WHERE managerID = (?) AND DATE(startTime) = (?) ORDER BY startTime";
     $modal = "#editShiftModal";
 } else {
-    //Hardcoded cashier, still need to implement this dynamically
-    $staffPosition = "cashier";
-    $sql = "SELECT shiftID, staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids FROM shifts WHERE managerID = (?) AND DATE(startTime) = (?) AND (staffPosition = (?) OR staffPosition = 'any') ORDER BY startTime";
+    $staffPosition = $_SESSION['staffPosition'];
+    $sql = "SELECT shiftID, staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids FROM shifts WHERE managerID = (?) AND DATE(startTime) = (?) AND (staffPosition = (?) OR staffPosition = 'any') AND active = true ORDER BY startTime";
     $modal = "#bidShiftModal";
 }
 

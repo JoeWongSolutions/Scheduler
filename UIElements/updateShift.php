@@ -24,11 +24,13 @@ function testInput($data) {
   return $data;
 }
 
-//Store variables
+//Get the shiftID
 if(!($shiftID = empty($_POST['shiftID']) ? false : testInput($_POST['shiftID']))){
     echo "The shiftID is not present";
     exit;
 }
+
+//Store variables
 if(!($shiftDate = empty($_POST['shiftDate']) ? false : testInput($_POST['shiftDate']))){
     echo "The shift date is not present";
     exit;
@@ -59,6 +61,16 @@ if ($mysqli->connect_error) {
     echo('Error: ' . $mysqli->connect_errno . ' ' . $mysqli->connect_error);
     exit;
 }
+
+//Find out if we are deleting the shift
+if($_POST['delete']){
+    $sql = "DELETE FROM shifts WHERE shiftID =" . $shiftID;
+    $mysqli->query($sql);
+    $mysqli->close();
+    header("Location: schedule.php");
+    exit;
+}
+
 $sql = "UPDATE shifts SET startTime=(?), endTime=(?), active=(?), maxBid=(?), staffPosition=(?)
 WHERE shiftID=(?)";
 if (!($stmt = $mysqli->prepare($sql))) {
