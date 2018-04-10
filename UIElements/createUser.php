@@ -20,7 +20,7 @@ if(!($name = empty($_POST['name']) ? false : testInput($_POST['name']))){
     echo "Name needs to be filled out";
     exit;
 }
-if(!($password = empty($_POST['password']) ? false : testInput($_POST['password']))){
+if(!($pass = empty($_POST['password']) ? false : testInput($_POST['password']))){
     echo "Password needs to be filled out";
     exit;
 }
@@ -43,7 +43,7 @@ if(!($birthday = empty($_POST['birthday']) ? false : testInput($_POST['birthday'
 }
 
 //Encryped pass
-$password = sha1($password);
+$pass = sha1($pass);
 
 //Database connection
 require_once "db.conf";
@@ -52,13 +52,13 @@ if ($mysqli->connect_error) {
     echo('Error: ' . $mysqli->connect_errno . ' ' . $mysqli->connect_error);
     exit;
 }
-$sql = "INSERT INTO users (name, userName, password, ssn, birthday, address, phoneNumber, email) VALUES
+$sql = "INSERT INTO users (realName, userID, pass, ssn, birthday, address, phone, email) VALUES
 ((?),(?),(?),(?),(?),(?),(?),(?))";
 if (!($stmt = $mysqli->prepare($sql))) {
     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
     exit;
 }
-if (!$stmt->bind_param("sssssss", $name, $userName, $password, $ssn, $phoneNumber, $email, $birthday)) {
+if (!$stmt->bind_param("ssssssss", $name, $userName, $pass, $ssn, $birthday, $address, $phone, $email)) {
     echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
     exit;
 }

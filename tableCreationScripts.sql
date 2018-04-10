@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS organizations;
 create table organizations(
-	name varchar(128),
+	orgName varchar(128),
     orgID int,
     locationCity varchar(128),
     locationState char(2),
@@ -9,7 +9,7 @@ create table organizations(
 );
 DROP TABLE IF EXISTS users;
 create table users(
-	name varchar(128) NOT NULL,
+	realName varchar(128) NOT NULL,
     userID varchar(128) PRIMARY KEY,
     pass varchar(512),
     ssn char(9) NOT NULL,
