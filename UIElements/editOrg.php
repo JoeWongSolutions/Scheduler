@@ -32,7 +32,7 @@ if ($mysqli->connect_error) {
     echo('Error: ' . $mysqli->connect_errno . ' ' . $mysqli->connect_error);
     exit;
 }
-$sql = "SELECT * FROM users WHERE userID=(?) AND pass=(?)";
+$sql = "SELECT * FROM organization WHERE orgID=(?) AND pass=(?)";
 if (!($stmt = $mysqli->prepare($sql))) {
     echo "Original User Data Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
     exit;
