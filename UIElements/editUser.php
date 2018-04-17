@@ -45,16 +45,34 @@ if (!$stmt->execute()) {
     echo "Original User Data Execute failed: (" . $stmt->errno . ") " . $stmt->error;
     exit;
 }else{
-    
+    $res = $stmt->get_result()->fetch_assoc();
 }
 
-$sql = "INSERT INTO users (realName, userID, pass, ssn, birthday, address, phone, email) VALUES
-((?),(?),(?),(?),(?),(?),(?),(?))";
+if(!($name = empty($_POST['name']) ? false : testInput($_POST['name']))){
+    $name = $res["name"];
+}
+if(!($ssn = empty($_POST['ssn']) ? false : testInput($_POST['ssn']))){
+    $ssn = $res["ssn"];
+}
+if(!($birthday = empty($_POST['birthday']) ? false : testInput($_POST['birthday']))){
+    $birthday = $res["birthday"];
+}
+if(!($address = empty($_POST['address']) ? false : testInput($_POST['address']))){
+    $address = $res["address"];
+}
+if(!($phone = empty($_POST['phone']) ? false : testInput($_POST['phone']))){
+    $phone = $res["phone"];
+}
+if(!($email = empty($_POST['email']) ? false : testInput($_POST['email']))){
+    $email = $res["email"];
+}
+
+$sql = "UPDATE users SET realName = (?), ssn = (?), birthday = (?), address = (?), phone = (?), email = (?) WHERE userID = (?) AND pass = (?)";
 if (!($stmt = $mysqli->prepare($sql))) {
     echo "Update User Data Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
     exit;
 }
-if (!$stmt->bind_param("ssssssss", $name, $userName, $pass, $ssn, $birthday, $address, $phone, $email)) {
+if (!$stmt->bind_param("ssssssss", $name, $ssn, $birthday, $address, $phone, $email, $userName, $pass)) {
     echo "Update User Data Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
     exit;
 }
