@@ -4,45 +4,46 @@ if(!session_start()) {
     exit;
 }
 
-if(!empty($_SESSION['loggedin'])){
-    if($_SESSION["accessLevel"] == "managers"){
-        $managerID = empty($_SESSION['loggedin']) ? false : $_SESSION['loggedin'];
-    } else {
-        echo "You are not logged in as a manager";
-        exit;
-    }
-} else {
-    header("location: loginForm.php");
-    echo "Error you are not logged in";
-    exit;
-}
-
 function testInput($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
 //Store variables
-if(!($startTime = empty($_POST['startTime']) ? false : testInput($_POST['startTime']))){
-    echo "Start time needs to be filled out";
+if(!($userName = empty($_POST['userName']) ? false : testInput($_POST['userName']))){
+    echo "User name needs to be filled out";
     exit;
 }
-if(!($endTime = empty($_POST['endTime']) ? false : testInput($_POST['endTime']))){
-    echo "End time needs to be filled out";
+if(!($name = empty($_POST['name']) ? false : testInput($_POST['name']))){
+    echo "Name needs to be filled out";
     exit;
 }
-//Can't check active because it has a false option
-$active = empty($_POST['active']) ? false : testInput($_POST['active']);
-if(!($maxBid = empty($_POST['maxBid']) ? false : testInput($_POST['maxBid']))){
-    echo "Max bids needs to be filled out";
+if(!($pass = empty($_POST['password']) ? false : testInput($_POST['password']))){
+    echo "Password needs to be filled out";
     exit;
 }
-if(!($staffPosition = empty($_POST['staffPosition']) ? false : testInput($_POST['staffPosition']))){
-    echo "Staff position needs to be filled out";
+if(!($ssn = empty($_POST['ssn']) ? false : testInput($_POST['ssn']))){
+    echo "SSN position needs to be filled out";
     exit;
 }
+if(!($address = empty($_POST['address']) ? false : testInput($_POST['address']))){
+    echo "Address position needs to be filled out";
+    exit;
+}
+if(!($phoneNumber = empty($_POST['phoneNumber']) ? false : testInput($_POST['phoneNumber']))){
+    $phoneNumber = NULL;
+}
+if(!($email = empty($_POST['email']) ? false : testInput($_POST['email']))){
+    $email = NULL;
+}
+if(!($birthday = empty($_POST['birthday']) ? false : testInput($_POST['birthday']))){
+    $birthday = NULL;
+}
+
+//Encryped pass
+$pass = hash("sha512",$pass);
 
 //Database connection
 require_once "db.conf";
@@ -51,13 +52,13 @@ if ($mysqli->connect_error) {
     echo('Error: ' . $mysqli->connect_errno . ' ' . $mysqli->connect_error);
     exit;
 }
-$sql = "INSERT INTO shifts (managerID, startTime, endTime, active, maxBid, bids, staffPosition) VALUES
-((?),(?),(?),(?),(?),0,(?))";
+$sql = "INSERT INTO users (realName, userID, pass, ssn, birthday, address, phone, email) VALUES
+((?),(?),(?),(?),(?),(?),(?),(?))";
 if (!($stmt = $mysqli->prepare($sql))) {
     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
     exit;
 }
-if (!$stmt->bind_param("ssssis", $managerID, $startTime, $endTime, $active, $maxBid, $staffPosition)) {
+if (!$stmt->bind_param("ssssssss", $name, $userName, $pass, $ssn, $birthday, $address, $phone, $email)) {
     echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
     exit;
 }
@@ -66,6 +67,6 @@ if (!$stmt->execute()) {
     exit;
 }
 $mysqli->close();
-header("Location: schedule.php");
+header("Location: index.php");
 echo "success";
 ?>
