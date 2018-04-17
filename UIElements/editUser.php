@@ -44,6 +44,8 @@ if (!$stmt->bind_param("ss", $userName, $pass)) {
 if (!$stmt->execute()) {
     echo "Original User Data Execute failed: (" . $stmt->errno . ") " . $stmt->error;
     exit;
+}else{
+    
 }
 
 $sql = "INSERT INTO users (realName, userID, pass, ssn, birthday, address, phone, email) VALUES
