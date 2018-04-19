@@ -28,15 +28,15 @@ if ($mysqli->connect_error) {
 }
 $sql = "SELECT * FROM organizations WHERE orgID=(?)";
 if (!($stmt = $mysqli->prepare($sql))) {
-    echo "Original User Data Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "Original Org Data Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
     exit;
 }
 if (!$stmt->bind_param("i", $orgID)) {
-    echo "Original User Data Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+    echo "Original Org Data Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
     exit;
 }
 if (!$stmt->execute()) {
-    echo "Original User Data Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+    echo "Original Org Data Execute failed: (" . $stmt->errno . ") " . $stmt->error;
     exit;
 }
 if ($res = $stmt->get_result()) {
