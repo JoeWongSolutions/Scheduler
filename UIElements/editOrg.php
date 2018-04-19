@@ -48,7 +48,7 @@ if ($res = $stmt->get_result()) {
     }
 }
 
-if(!($name = empty($_POST['orgName']) ? false : testInput($_POST['orgName']))){
+if(!($orgName = empty($_POST['orgName']) ? false : testInput($_POST['orgName']))){
     $orgName = $row["orgName"];
 }
 if(!($locationCity = empty($_POST['locationCity']) ? false : testInput($_POST['locationCity']))){
