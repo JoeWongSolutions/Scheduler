@@ -49,7 +49,7 @@ if ($res = $stmt->get_result()) {
 }
 
 if(!($name = empty($_POST['orgName']) ? false : testInput($_POST['orgName']))){
-    $name = $row["orgName"];
+    $orgName = $row["orgName"];
 }
 if(!($locationCity = empty($_POST['locationCity']) ? false : testInput($_POST['locationCity']))){
     $locationCity = $row["locationCity"];
