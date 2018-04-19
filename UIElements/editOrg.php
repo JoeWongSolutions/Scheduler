@@ -48,8 +48,8 @@ if ($res = $stmt->get_result()) {
     }
 }
 
-if(!($name = empty($_POST['name']) ? false : testInput($_POST['name']))){
-    $name = $row["name"];
+if(!($name = empty($_POST['orgName']) ? false : testInput($_POST['orgName']))){
+    $name = $row["orgName"];
 }
 if(!($locationCity = empty($_POST['locationCity']) ? false : testInput($_POST['locationCity']))){
     $locationCity = $row["locationCity"];
