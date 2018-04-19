@@ -16,7 +16,7 @@ if(!empty($_SESSION['loggedin'])){
         $managerID = empty($_SESSION['managerID']) ? false : $_SESSION['managerID'];
     }
 } else {
-    header("location: loginForm.php");
+    header("location: index.php");
     echo "Error you are not logged in";
     exit;
 }
