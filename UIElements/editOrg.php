@@ -26,7 +26,7 @@ if ($mysqli->connect_error) {
     echo('Error: ' . $mysqli->connect_errno . ' ' . $mysqli->connect_error);
     exit;
 }
-$sql = "SELECT * FROM organization WHERE orgID=(?)";
+$sql = "SELECT * FROM organizations WHERE orgID=(?)";
 if (!($stmt = $mysqli->prepare($sql))) {
     echo "Original User Data Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
     exit;
