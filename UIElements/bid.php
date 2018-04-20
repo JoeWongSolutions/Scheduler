@@ -1,4 +1,26 @@
 <!DOCTYPE html>
+<?php
+if(!session_start()) {
+    header("Location: error.php");
+    exit;
+}
+
+//Test Code
+//$_SESSION['loggedin'] = "1";
+//$_SESSION['accessLevel'] = "managers";
+
+if(!empty($_SESSION['loggedin'])){
+    if($_SESSION["accessLevel"] == "managers"){
+        $managerID = empty($_SESSION['loggedin']) ? false : $_SESSION['loggedin'];
+    } elseif($_SESSION["accessLevel"] == "users"){
+        $managerID = empty($_SESSION['managerID']) ? false : $_SESSION['managerID'];
+    }
+} else {
+    header("location: index.php");
+    echo "Error you are not logged in";
+    exit;
+}
+?>
 <html lang="en">
     <head>
     <!-- Required meta tags -->
@@ -11,10 +33,10 @@
     <title>ABCScheduler</title>
     </head>
     <body>
-        <?php 
-            include("templates/nav_manager.php");
-            include("templates/schedule.template");
-            include("templates/editShiftModal.template");
+        <?php
+            include("templates/nav_default.php");
+            include("templates/bid.template");
+            include("templates/bidShiftModal.template");
         ?>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -22,6 +44,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Optional JavaScript -->
-    <script src="scripts/main.js"></script>
+    <script src="scripts/bid.js"></script>
     </body>
 </html>
