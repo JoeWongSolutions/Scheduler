@@ -49,6 +49,14 @@ CREATE TABLE employed(
     FOREIGN KEY (userID) REFERENCES users (userID),
     FOREIGN KEY (managerID) REFERENCES managers (managerID)
 );
+DROP TABLE IF EXISTS assignedShifts;
+CREATE TABLE assignedShifts (
+    shiftID bigint NOT NULL,
+	userID varchar(128) NOT NULL,
+    PRIMARY KEY (shiftID, userID),
+    FOREIGN KEY (shiftID) REFERENCES shifts (shiftID),
+    FOREIGN KEY (userID) REFERENCES users (userID)
+);
 DROP TABLE IF EXISTS shiftsArchive;
 CREATE TABLE shiftsArchive (
 	managerID varchar(128) NOT NULL,
@@ -104,7 +112,9 @@ INSERT INTO shifts (managerID, startTime, endTime, active, maxBid, bids, staffPo
 ('1','2018-04-09 11:30:00','2018-04-09 12:30:00',true,3,0,'any'),
 ('1','2018-04-11 13:30:00','2018-04-11 14:30:00',true,3,0,'any'),
 ('1','2018-04-11 11:30:00','2018-04-11 12:30:00',true,3,0,'any');
-
+INSERT INTO assignedShifts VALUES
+(1,1),
+(2,1);
 
 #Test Queries
 SELECT staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids FROM shifts WHERE managerID = 1 AND DATE(startTime) = '2018-04-09' AND (staffPosition = 'cashier' OR staffPosition = 'any') AND bids < maxBids ORDER BY startTime;

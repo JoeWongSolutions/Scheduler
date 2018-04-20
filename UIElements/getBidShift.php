@@ -13,12 +13,12 @@ if(!empty($_SESSION['loggedin'])){
     if($_SESSION["accessLevel"] == "managers"){
         $managerID = empty($_SESSION['loggedin']) ? false : $_SESSION['loggedin'];
     } else {
+        $userID = $_SESSION['loggedin'];
         $managerID = empty($_SESSION['managerID']) ? false : $_SESSION['managerID'];
         if(!$managerID){
             echo "The managerID was not set, managerID is not a valid session index";
             exit;
         }
-        $userID = $_SESSION['loggedin'];
     }
 } else {
     header("location: loginForm.php");
@@ -60,8 +60,27 @@ if($_SESSION["accessLevel"] == "managers"){
     $modal = "#editShiftModal";
 } else {
     $staffPosition = $_SESSION['staffPosition'];
-    $sql = "SELECT shifts.shiftID, staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids FROM shifts, assignedShifts WHERE shifts.shiftID = assignedShifts.shiftID AND assignedShifts.userID = (?) AND DATE(startTime) = (?) ORDER BY startTime";
-    $modal = "#offerShiftModal";
+    if($staffPosition == 'any'){
+        $sql = "SELECT shiftID, staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids 
+        FROM shifts WHERE managerID = (?) 
+        AND DATE(startTime) = (?)  
+        AND active = true 
+        AND shiftID NOT IN (
+            SELECT shiftID from assignedShifts WHERE userID = (?)
+        )
+        ORDER BY startTime";
+    } else {
+        $sql = "SELECT shiftID, staffPosition, TIME(startTime) AS startTime, TIME(endTime) AS endTime, active, maxBid, bids 
+        FROM shifts WHERE managerID = (?) 
+        AND DATE(startTime) = (?) 
+        AND (staffPosition = (?) OR staffPosition = 'any') 
+        AND active = true 
+        AND shiftID NOT IN (
+            SELECT shiftID from assignedShifts WHERE userID = (?)
+        )
+        ORDER BY startTime";
+    }
+    $modal = "#bidShiftModal";
 }
 
 if (!($stmt = $mysqli->prepare($sql))) {
@@ -83,8 +102,12 @@ foreach($weekdays as $weekday){
                     if (!$stmt->bind_param("is", $managerID, $week_start_string)) {
                         echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
                     }
+                } else if ($staffPosition == 'any') {
+                    if (!$stmt->bind_param("iss", $managerID, $week_start_string, $userID)) {
+                        echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+                    }
                 } else {
-                    if (!$stmt->bind_param("ss", $userID, $week_start_string)) {
+                    if (!$stmt->bind_param("isss", $managerID, $week_start_string, $staffPosition, $userID)) {
                         echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
                     }
                 }
