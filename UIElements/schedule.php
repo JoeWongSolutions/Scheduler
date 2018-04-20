@@ -42,7 +42,7 @@ if(!empty($_SESSION['loggedin'])){
             } else {
                 include("templates/nav_default.php");
                 include("templates/user_schedule.template");
-                include("templates/bidShiftModal.template");
+                include("templates/offerShiftModal.template");
             }
         ?>
 
