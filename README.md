@@ -38,7 +38,8 @@ We would end our Tuesday meetings with our Retrospectives. This required the who
 
 ## Scrum Artifacts
  * The Product Backlog
- Initial creation of the Product Backlog took place at the very beginning of Sprint 1. As we progressed through our project, we created more stories that would be necessary to create our product. 
+ 
+   Initial creation of the Product Backlog took place at the very beginning of Sprint 1. As we progressed through our project, we created more stories that would be necessary to create our product. 
  * The Sprint Backlog
  
    Sprint 1: The first sprint backlog included all of our Use Case Descriptions as needed for the project.  
