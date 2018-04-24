@@ -34,16 +34,9 @@ if(!empty($_SESSION['loggedin'])){
     </head>
     <body>
         <?php
-            if($_SESSION["accessLevel"] == "managers"){
-                include("templates/nav_manager.php");
-                include("templates/schedule.template");
-                include("templates/editShiftModal.template");
-                include("templates/addShiftModal.template");
-            } else {
-                include("templates/nav_default.php");
-                include("templates/user_schedule.template");
-                include("templates/bidShiftModal.template");
-            }
+            include("templates/nav_default.php");
+            include("templates/bid.template");
+            include("templates/bidShiftModal.template");
         ?>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -51,6 +44,6 @@ if(!empty($_SESSION['loggedin'])){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Optional JavaScript -->
-    <script src="scripts/schedule.js"></script>
+    <script src="scripts/bid.js"></script>
     </body>
 </html>
