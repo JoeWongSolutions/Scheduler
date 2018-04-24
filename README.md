@@ -40,6 +40,7 @@ We would end our Tuesday meetings with our Retrospectives. This required the who
  * The Product Backlog
  Initial creation of the Product Backlog took place at the very beginning of Sprint 1. As we progressed through our project, we created more stories that would be necessary to create our product. 
  * The Sprint Backlog
+ 
   Sprint 1: The first sprint backlog included all of our Use Case Descriptions as needed for the project.  
   Sprint 2: This backlog included basic funtionality for the project to get it into a "completed/working" product. This included logging in and viewing our Schedule page.  
   Sprint 3: This backlog was a variety of functionality that we thought were necessary to implement to achieve our idea of what would make the product "completed/working", involving not only remaining basic functionality but also features more complicated but ideal for the product.  
