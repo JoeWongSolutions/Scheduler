@@ -83,7 +83,7 @@
                 exit;
             }
         } else {
-          $error = 'Login Error: Please contact the system administrator.';
+          $error = 'Login Error: Please contact the system administrator.'  . $accessLevel;
           require "loginForm.php";
           exit;
         }

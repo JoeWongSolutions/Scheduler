@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModal" aria-hidden="true" id="addEmployeeModal">
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="offerShiftModal" aria-hidden="true" id="offerShiftModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header-lg mt-2 mb-4 mx-2">
@@ -6,38 +6,40 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h1 class="text-center">Add Employee</h1>
+                    <h1 class="text-center">Offer Shift</h1>
                 </div>
             </div>    
             <div class="modal-body-lg">
                 <div class="container-fluid">
-                    <form action="addEmployee.php" method="post">
+                    <form action="#" method="post">
+                        <input type="hidden" id="shiftID" name="shiftID" value="">
+                        <input type="hidden" id="shiftDate" name="shiftDate" value="">
                         <div class="form-group row">
-                            <label class="col-lg-2 col-form-label">Name</label>
+                            <label class="col-lg-2 col-form-label" for="staffPosition">Position</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="realName" disabled>
+                                <input type="text" class="form-control" id="staffPosition" name="staffPosition" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-2 col-form-label">Phone Number</label>
+                            <label class="col-lg-2 col-form-label" for="maxBid">Max Bids</label>
                             <div class="col-lg-10">
-                                <input type="tel" class="form-control" id="phoneNumber" disabled>
+                                <input type="number" class="form-control" id="maxBid" name="maxBid" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-2 col-form-label">Email</label>
+                            <label class="col-lg-2 col-form-label" for="startTime">Start Time</label>
                             <div class="col-lg-10">
-                                <input type="email" class="form-control" id="email" disabled>
+                                <input type="time" class="form-control" id="startTime" name="startTime" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-2 col-form-label">Username</label>
+                            <label class="col-lg-2 col-form-label" for="endTime">End Time</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="userName" name="userName">
+                                <input type="time" class="form-control" id="endTime" name="endTime" readonly>
                             </div>
                         </div>
                         <div class="form-group text-center">
-                            <input type="submit" class="btn btn-primary" value="Add">
+                            <input type="submit" class="btn btn-success" name="offer" id="offer" value="Offer">
                         </div>
                     </form>
                 </div>

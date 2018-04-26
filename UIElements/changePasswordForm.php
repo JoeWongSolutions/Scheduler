@@ -21,7 +21,7 @@
 
     <!-- Bootstrap CSS -->
     <?php include("bootstrap/bscss.php"); ?>
-	<title>Create User Account</title>
+	<title>Change Password</title>
     <script>
         
     </script>
@@ -48,31 +48,38 @@
                     <!--left column-->
                     <div class="col-lg-6">
                         <form action="changePassword.php" method="POST">
-
-                            <input type="hidden" name="action" value="do_change">
-
-                            <div>
-                                <label for="currentPass">Current Password:</label>
-                                <input type="password" id="currentPass" name="currentPass" autofocus required>
+                            <div class="form-group row">
+                                <input type="hidden" name="action" value="do_change">
+                                <label for="currentPass" class="col-lg-4 col-form-label">Current Password:
+                                </label>
+                                <div class="col-lg-5">
+                                    <input type="password" id="currentPass" name="currentPass" autofocus required class="form-control">
+                                </div>
                             </div>
-
-                            <div>
-                                <label for="newPass">New Password:</label>
-                                <input type="password" id="newPass" name="newPass" required onkeyup='check();'>
+                            <div class="form-group row">
+                                
+                                <label for="newPass" class="col-lg-4 col-form-label">New Password:</label>
+                                <div class="col-lg-5">
+                                    <input type="password" id="newPass" name="newPass" required onkeyup='check();' class="form-control">
+                                </div>
                             </div>
-
-                            <div>
-                                <label for="confirmPass">Confirm Password:</label>
-                                <input type="password" id="confirmPass" name="confirmPass" required onkeyup='check();'>
+                            <div class="form-group row">
+                                <label for="confirmPass" class="col-lg-4 col-form-label">Confirm Password:</label>
+                                <div class="col-lg-5">
+                                    <input type="password" id="confirmPass" name="confirmPass" required onkeyup='check();' class="form-control">
+                                </div>
                             </div>
                             <span id='message'></span>
-                            <div>
-                                <input id='submit' type="submit" value="Submit">
+                            <div class="col-lg-4 m-0 p-0">
+                                <input id='submit' type="submit" value="Submit" class="form-control">
                             </div>
+                            
                         </form>
                     </div>
+                    
+<!--                    right column -->
                     <div class="col-lg-6">
-                        <span><img src="password.png" class="img-responsive" alt="" style="width:420px;height:320px;"/></span>
+                        <span><img src="password.png" class="img-responsive" alt="" style="width:400px;height:320px;"/></span>
                     </div>
                 </div>
             </div>

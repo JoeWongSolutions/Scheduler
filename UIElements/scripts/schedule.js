@@ -37,6 +37,27 @@ $('#editShiftModal').on('show.bs.modal', function (event) {
     modal.find('#active').val(active)
 })
 
+$('#offerShiftModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var shift = button.data('shiftid') // Extract info from data-* attributes
+    var date = button.data('shiftdate')
+    var position = button.data('staffposition')
+    var startTime = button.data('starttime')
+    var endTime = button.data('endtime')
+    var maxBid = button.data('maxbid')
+//    var active = button.data('active')
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('#shiftID').attr("value",shift)
+    modal.find('#shiftDate').attr("value",date)
+    modal.find('#staffPosition').val(position)
+    modal.find('#startTime').val(startTime)
+    modal.find('#endTime').val(endTime)
+    modal.find('#maxBid').val(maxBid)
+//    modal.find('#active').val(active)
+})
+
 $(function() {
     //Change the appearance of the nav bar to indicate current tab
     $('#schedule-tab').toggleClass("active")
