@@ -3,7 +3,7 @@
     <a class="nav-link" id="schedule-tab" href="schedule.php" aria-selected="false">Schedule</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="employees-tab" href="employees.php" aria-selected="false">Employees</a>
+    <a class="nav-link" id="employees-tab" href="employeesForm.php" aria-selected="false">Employees</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="profile-tab" href="#"  aria-selected="false">Profile</a>

@@ -13,8 +13,9 @@
     <body>
         <?php 
             include("templates/nav_manager.php");
-            include("templates/employees.template");
+            include("templates/employees.php");
             include("templates/addEmployeeModal.template");
+            include("templates/editEmployeeModal.template");
         ?>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

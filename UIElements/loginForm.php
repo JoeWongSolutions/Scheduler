@@ -29,25 +29,30 @@
                         ?>
                         <input type="hidden" name="action" value="do_login">
                         <div class="box">
-                            <div>
-                                <label for="loginUsername">Username:</label>
-                                <input type="text" id="loginUsername" name="loginUsername" autofocus placeholder="Username">
+                            <div class="form-group row">
+                                <label for="loginUsername" class="col-lg-2 col-form-label">Username:</label>
+                                <div class="col-lg-5">
+                                    <input type="text" id="loginUsername" name="loginUsername" autofocus placeholder="Username" class="form-control">
+                                </div>
                             </div>
-                            <div>
-                                <label for="loginPassword">Password:</label>
-                                <input type="password" id="loginPassword" name="loginPassword" placeholder="Password">
+                            <div class="form-group row">
+                                <label for="loginPassword" class="col-lg-2 col-form-label">Password:</label>
+                                <div class="col-lg-5">
+                                     <input type="password" id="loginPassword" name="loginPassword" placeholder="Password" class="form-control">
+                                </div>
                             </div>
+<!--                            -->
                             <div class="radio">
                                 <label><input type="radio" name="accessLevel" value="managers">Manager</label>
                             </div>
                             <div class="radio">
                                 <label><input type="radio" name="accessLevel" value="users" checked>User</label>
                             </div>
-                            
-                            <button class="btn btn-default full-width"><span>Login</span></button>
+<!--                            -->
+                            <button class="btn btn-success full-width py-1 my-3"><span>Login</span></button>
                         </div>
                     </form>
-                    <button class="btn-lg btn-success py-1 my-3" data-toggle="modal" data-target="#createUserModal">Register</button>
+                    <button class="btn-sm btn-secondary" data-toggle="modal" data-target="#createUserModal">Register</button>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS organizations;
 create table organizations(
-	name varchar(128),
+	realName varchar(128),
     orgID int,
     locationCity varchar(128),
     locationState char(2),
@@ -9,7 +9,7 @@ create table organizations(
 );
 DROP TABLE IF EXISTS users;
 create table users(
-	name varchar(128) NOT NULL,
+	realName varchar(128) NOT NULL,
     userID varchar(128) PRIMARY KEY,
     pass varchar(512),
     ssn char(9) NOT NULL,
@@ -82,7 +82,7 @@ CREATE TABLE employedArchive(
 );
 DROP TABLE IF EXISTS usersArchive;
 create table usersArchive(
-	name varchar(128),
+	realName varchar(128),
     userID varchar(128) NOT NULL,
     ssn char(9) NOT NULL,
     birthday date,
@@ -91,7 +91,7 @@ create table usersArchive(
 );
 DROP TABLE IF EXISTS organizationsArchive;
 create table organizationsArchive(
-	name varchar(128),
+	realName varchar(128),
     orgID int NOT NULL,
     locationCity varchar(128),
     locationState char(2),
