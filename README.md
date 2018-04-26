@@ -13,7 +13,7 @@ We created our database using MySQL, and implemented PHP and HTML with Apache to
 We utilized the Agile Processes and Procedures, and the Scrum Process as described in this Readme below. We utilized the methodology of Paired Programming when we were able to meet together as a complete group on our Tuesday and Thursday meetings. We also utilized the Kanban Board in our Axosoft planning.
 
 ## The Scrum Team
-Our whole group consists of five members: Joe Wong, Adam Oakes, Will Smith, Alex Parr, and Camille Fraizer.
+Our whole group consists of five members: Joe Wong, Adam Oakes, Will Smith, Alex Parr, and Camille Frazier.
   * Product Owner: We designated Joe Wong as our Product Owner at the beginning of the project. 
   * Scrum Master: For our project, we thought it would be a good idea to let multiple members take turns being the Scrum Master in order to get a feel for what the position would be like in a real situation. Our Scrum Masters went as follows: Alex Parr, Adam Oakes, Alex Parr, Will Smith.
   * Development Team: The Development Team consisted of all members of the group.
