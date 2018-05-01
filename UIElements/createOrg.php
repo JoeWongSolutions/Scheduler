@@ -39,7 +39,7 @@ if(!($strNumber = empty($_POST['strNumber']) ? false : testInput($_POST['strNumb
 
 
 //Encryped pass
-$pass = hash("sha512",$pass);
+$pass = sha1($pass);
 
 
 //Database connection
