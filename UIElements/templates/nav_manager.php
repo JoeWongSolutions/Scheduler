@@ -6,7 +6,7 @@
     <a class="nav-link" id="employees-tab" href="employeesForm.php" aria-selected="false">Employees</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" href="#"  aria-selected="false">Profile</a>
+    <a class="nav-link" id="profile-tab" href="profile.html"  aria-selected="false">Profile</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="password-tab" href="changePasswordForm.php" aria-selected="false">Change Password</a>
