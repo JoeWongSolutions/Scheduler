@@ -23,7 +23,7 @@ if(!($pass = empty($_POST['pass']) ? false : testInput($_POST['pass']))){
     exit;
 }
 //Encryped pass
-$pass = hash("sha512",$pass);
+$pass = sha1($pass);
 
 //Database connection
 require_once "db.conf";
