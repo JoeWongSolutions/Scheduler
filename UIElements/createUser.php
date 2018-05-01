@@ -43,8 +43,8 @@ if(!($birthday = empty($_POST['birthday']) ? false : testInput($_POST['birthday'
 }
 
 //Encryped pass
-$pass = hash("sha512",$pass);
-
+$pass = sha1($pass); 
+    
 //Database connection
 require_once "db.conf";
 $mysqli = new mysqli($servername, $username, $password, $dbname);
