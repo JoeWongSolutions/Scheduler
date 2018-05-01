@@ -19,9 +19,10 @@ if(!($userID = empty($_POST['userID']) ? false : testInput($_POST['userID']))){
     exit;
 }
 if(!($staffPosition = empty($_POST['staffPosition']) ? false : testInput($_POST['staffPosition']))){
-    echo "Staff Position needs to be filled out edit failed";
+    echo "User ID needs to be filled out edit failed";
     exit;
 }
+
 
 //Database connection
 require_once "db.conf";
@@ -45,6 +46,6 @@ if (!$stmt->execute()) {
     exit;
 }
 $mysqli->close();
-header("Location: index.php");
+header("Location: employeesForm.php");
 echo "success";
 ?>
