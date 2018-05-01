@@ -14,8 +14,12 @@ function testInput($data) {
 
 
 //Store variables
-if(!($userName = empty($_POST['userName']) ? false : testInput($_POST['userName']))){
-    echo "User name needs to be filled out edit failed";
+if(!($userID = empty($_POST['userID']) ? false : testInput($_POST['userID']))){
+    echo "User ID needs to be filled out edit failed";
+    exit;
+}
+if(!($staffPosition = empty($_POST['staffPosition']) ? false : testInput($_POST['staffPosition']))){
+    echo "Staff Position needs to be filled out edit failed";
     exit;
 }
 
