@@ -1,5 +1,12 @@
 # Scheduler
 
+## Contributors
+* Joe Wong
+* Adam Oakes
+* Will Smith
+* Alex Parr
+* Camille Frazier
+
 ## Instance Link
 [http://ec2-34-205-64-159.compute-1.amazonaws.com](http://ec2-34-205-64-159.compute-1.amazonaws.com)
 
